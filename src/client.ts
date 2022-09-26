@@ -1,14 +1,34 @@
-import { Client, GatewayIntentBits, Interaction } from 'discord.js';
+import { Client, Collection, GatewayIntentBits, REST, Routes } from 'discord.js';
+import { loadCommands, loadEvents } from './utils/modules';
+import { ICommand } from './interfaces';
+import { getEnv } from './env';
 
-export const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+export default class Bot extends Client {
+  public commands: Collection<string, ICommand> = new Collection();
 
-client.once('ready', () => {
-  console.log('Ready!');
-});
+  public async run() {
+    const rest = new REST({ version: '10' }).setToken(getEnv('TOKEN'));
 
-client.on('interactionCreate', async (interaction: Interaction) => {
-  if (!interaction.isChatInputCommand()) return;
-  if (interaction.commandName === 'ping') {
-    await interaction.reply('Pong');
+    this.commands = new Collection(await loadCommands());
+
+    this.once('ready', async () => {
+      try {
+        await rest.put(Routes.applicationCommands(getEnv('CLIENT_ID')), { body: this.commands.toJSON() });
+        console.log('Started');
+      } catch (e) {
+        console.error(e);
+      }
+    });
+
+    this.on('interactionCreate', async (interaction) => {
+      if (!interaction.isChatInputCommand()) return;
+      const command = this.commands.find((command) => command.name === interaction.commandName);
+      if (!command) return;
+      await command.execute(this, interaction);
+    });
+
+    (await loadEvents()).forEach(([name, event]) => this.on(name, event.run));
+
+    await this.login(getEnv('TOKEN'));
   }
-});
+}

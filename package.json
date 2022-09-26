@@ -5,9 +5,10 @@
   "main": "dist/main.js",
   "scripts": {
     "watch-node": "nodemon dist/index.js",
-    "build": "tsc && concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
+    "dev": "tsc && concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
     "build-ts": "tsc",
-    "watch-ts": "tsc -w"
+    "watch-ts": "tsc -w",
+    "start": "node dist/index.js"
   },
   "author": "",
   "license": "ISC",

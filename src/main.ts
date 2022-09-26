@@ -1,8 +1,6 @@
-import { client } from './client';
-import { initCommands } from './commands';
-import { getEnv } from './env';
+import Bot from './client';
+import { GatewayIntentBits } from 'discord.js';
 
-(async () => {
-  await initCommands();
-  await client.login(getEnv('TOKEN'));
-})();
+const bot = new Bot({ intents: [GatewayIntentBits.Guilds] });
+
+bot.run();
