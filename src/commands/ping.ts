@@ -2,8 +2,9 @@ import type { ICommand } from '../interfaces';
 
 export const Command: ICommand = {
   name: 'ping',
-  description: 'Says pong',
+  description: 'Responds with latency between bot and discord servers.',
   async execute(client, interaction) {
-    await interaction.reply('Pong');
+    const ping = new Date().getTime() - interaction.createdTimestamp;
+    await interaction.reply(':ping_pong: ' + ping + 'ms');
   },
 };
