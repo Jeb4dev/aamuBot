@@ -1,16 +1,18 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "pretty": true,
-        "resolveJsonModule": true,
-        "sourceMap": false,
-        "target": "esnext",
-        "outDir": "./dist",
-        "baseUrl": "./src",
-        "experimentalDecorators": true,
-        "strict": true
-    },
-    "include": ["src/**/*.ts", "test/**/*.spec.ts"],
-    "exclude": ["node_modules"]
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "pretty": true,
+    "resolveJsonModule": true,
+    "sourceMap": false,
+    "target": "esnext",
+    "outDir": "./dist",
+    "baseUrl": "./src",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strict": true,
+    "strictPropertyInitialization": false
+  },
+  "include": ["src/**/*.ts", "test/**/*.spec.ts"],
+  "exclude": ["node_modules"]
 }
