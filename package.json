@@ -14,7 +14,7 @@
     "migrate:down": "ts-node ./node_modules/typeorm/cli.js migration:revert -d ./src/data-source.ts"
   },
   "author": "",
-  "license": "ISC",
+  "license": "",
   "dependencies": {
     "discord.js": "^14.4.0",
     "dotenv": "^16.0.2",
