@@ -12,6 +12,6 @@
 - ``npm run build-ts && npm start``
 ### Build docker
 - build docker image ``docker image build -t project-x-bot .``
-- run container from an image``docker run -d -e TOKEN= -e CLIENT_ID= -e DB_ADDRESS= project-x-bot --name project-x-bot``
+- run container from an image``docker run -d -e TOKEN= -e CLIENT_ID= -e DB_ADDRESS= --name project-x-bot project-x-bot ``
 ### Migrations
 - run `npm run migrate:up`
