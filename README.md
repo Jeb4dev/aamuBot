@@ -14,4 +14,6 @@
 - build docker image ``docker image build -t project-x-bot .``
 - run container from an image``docker run -d -e TOKEN= -e CLIENT_ID= project-x-bot --name project-x-bot``
 ### Migrations
-- run `npm run migrate:up`
+- migrate to the last migration `npm run migrate:up`
+- revert the last migration `npm run migrate:down`
+- generate new migration `npm run migrate:generate MigrationName`

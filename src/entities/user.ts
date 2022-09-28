@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryColumn, CreateDateColumn } from 'typeorm';
+import { Entity, PrimaryColumn, CreateDateColumn, OneToMany, JoinTable, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { PlayerSkill } from './playerSkill';
 
 @Entity({ name: 'users' })
 export class User {
@@ -7,4 +8,7 @@ export class User {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @OneToMany(() => PlayerSkill, (skill) => skill.user)
+  skills: PlayerSkill[];
 }

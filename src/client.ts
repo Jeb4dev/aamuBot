@@ -24,6 +24,12 @@ export default class Bot extends Client {
       if (!interaction.isChatInputCommand()) return;
       const command = this.commands.find((command) => command.name === interaction.commandName);
       if (!command) return;
+      if (command.requirements) {
+        for (let requirement of command.requirements) {
+          if (!(await requirement(this, interaction))) return;
+        }
+      }
+
       await command.execute(this, interaction);
     });
 
