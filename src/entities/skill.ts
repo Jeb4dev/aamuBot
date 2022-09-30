@@ -5,27 +5,49 @@ export class Skill {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @CreateDateColumn()
-  createdAt: Date;
+  @CreateDateColumn({
+    name: 'created_on',
+  })
+  createdOn: Date;
 
-  @UpdateDateColumn()
-  updatedAt: Date;
+  @UpdateDateColumn({
+    name: 'updated_on',
+  })
+  updatedOn: Date;
 
   @Column()
   name: string;
 
-  @Column()
+  @Column({
+    default: 'static/img/skills/skills_placeholder.png',
+    name: 'image_path',
+  })
   imagePath: string;
 
   @Column()
   emoji: string;
 
-  @Column()
+  @Column({
+    default: 1,
+    name: 'minimum_level',
+  })
   minimumLevel: number;
 
-  @Column()
+  @Column({
+    default: 999,
+    name: 'maximum_level',
+  })
   maximumLevel: number;
 
-  @Column()
-  experienceForLevel: number;
+  @Column({
+    default: 10,
+    name: 'base_experience',
+  })
+  baseExperience: number;
+
+  @Column({
+    default: 2,
+    name: 'growth_rate',
+  })
+  growthRate: number;
 }

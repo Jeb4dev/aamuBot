@@ -7,11 +7,15 @@ export class PlayerSkill {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @CreateDateColumn()
-  createdAt: Date;
+  @CreateDateColumn({
+    name: 'created_on',
+  })
+  createdOn: Date;
 
-  @UpdateDateColumn()
-  updatedAt: Date;
+  @UpdateDateColumn({
+    name: 'updated_on',
+  })
+  updatedOn: Date;
 
   @ManyToOne(() => Skill)
   skill: Skill;
@@ -19,9 +23,14 @@ export class PlayerSkill {
   @ManyToOne(() => User)
   user: User;
 
-  @Column()
-  level: number = 0;
+  // Should be equal to skill.minimumLevel by default
+  @Column({
+    default: 1,
+  })
+  level: number;
 
-  @Column()
-  experience: number = 0;
+  @Column({
+    default: 0,
+  })
+  experience: number;
 }

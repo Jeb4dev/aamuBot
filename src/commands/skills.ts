@@ -2,10 +2,10 @@ import type { ICommand } from '../interfaces';
 import { User } from '../entities/user';
 import { AppDataSource } from '../data-source';
 import { isRegistered } from '../requirements/isRegistered';
-import { PlayerSkill } from '../entities/playerSkill';
+import { PlayerSkill } from '../entities/player-skill';
 
 const formatSkill = (skill: PlayerSkill): string =>
-  `${skill.skill.emoji} ${skill.skill.name}: ${skill.level} level - ${skill.experience}/${skill.skill.experienceForLevel} for next level`;
+  `${skill.skill.emoji} ${skill.skill.name}: ${skill.level} level - ${skill.experience}/${skill.skill.baseExperience} for next level`;
 
 export const Command: ICommand = {
   name: 'skills',
