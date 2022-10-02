@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, Column } from 'typeorm';
 import { Skill } from './skill';
-import { User } from './user';
+import { Profile } from './profile';
 
 @Entity({ name: 'player_skills' })
 export class PlayerSkill {
@@ -20,8 +20,8 @@ export class PlayerSkill {
   @ManyToOne(() => Skill)
   skill: Skill;
 
-  @ManyToOne(() => User)
-  user: User;
+  @ManyToOne(() => Profile)
+  profile: Profile;
 
   // Should be equal to skill.minimumLevel by default
   @Column({

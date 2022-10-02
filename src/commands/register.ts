@@ -1,6 +1,11 @@
 import type { ICommand } from '../interfaces';
 import { User } from '../entities/user';
 import { AppDataSource } from '../data-source';
+import { Profile } from '../entities/profile';
+import { Wallet } from '../entities/wallet';
+import { PlayerSkill } from '../entities/player-skill';
+import { Skill } from '../entities/skill';
+import { SelectedProfile } from '../entities/selected-profile';
 
 export const Command: ICommand = {
   name: 'register',
@@ -14,6 +19,7 @@ export const Command: ICommand = {
     });
     if (user) {
       await interaction.reply(`Welcome back <@${user.id}>!`);
+      console.log(user);
     } else {
       user = usersRepository.create({
         id: userId,
