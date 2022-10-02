@@ -17,7 +17,7 @@ export const Command: ICommand = {
       fields: [
         {
           name: 'Wallet',
-          value: 'Buy food with silver, or?',
+          value: ':moneybag:',
         },
         {
           name: 'Gold',
