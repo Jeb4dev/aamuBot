@@ -7,9 +7,11 @@ import {
   PrimaryGeneratedColumn,
   Column,
   Relation,
+  OneToOne,
 } from 'typeorm';
 import { PlayerSkill } from './player-skill';
 import { User } from './user';
+import { Wallet } from './wallet';
 
 @Entity({ name: 'profiles' })
 export class Profile {
@@ -34,4 +36,7 @@ export class Profile {
 
   @Column()
   label: string;
+
+  @OneToOne(() => Wallet, (wallet) => wallet.profile)
+  wallet: Relation<Wallet>;
 }
