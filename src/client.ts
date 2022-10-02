@@ -1,4 +1,4 @@
-import { Client, Collection, GatewayIntentBits, REST, Routes } from 'discord.js';
+import { Client, Collection, GatewayIntentBits, REST, Routes, SlashCommandBuilder } from 'discord.js';
 import { loadCommands, loadEvents } from './utils/modules';
 import { ICommand } from './interfaces';
 import { getEnv } from './env';
@@ -10,14 +10,15 @@ export default class Bot extends Client {
     const rest = new REST({ version: '10' }).setToken(getEnv('TOKEN'));
 
     this.commands = new Collection(await loadCommands());
+    const body = this.commands.map((command) => {
+      const builder = new SlashCommandBuilder().setName(command.name).setDescription(command.description);
+      return (command.buildCommand ? command.buildCommand(builder) : builder).toJSON();
+    });
+    console.log(body);
 
     this.once('ready', async () => {
-      try {
-        await rest.put(Routes.applicationCommands(getEnv('CLIENT_ID')), { body: this.commands.toJSON() });
-        console.log('Started');
-      } catch (e) {
-        console.error(e);
-      }
+      await rest.put(Routes.applicationCommands(getEnv('CLIENT_ID')), { body });
+      console.log('Started');
     });
 
     this.on('interactionCreate', async (interaction) => {

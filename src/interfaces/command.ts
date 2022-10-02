@@ -5,7 +5,7 @@ export type Requirement = (client: Client, interaction: ChatInputCommandInteract
 export interface ICommand {
   name: string;
   description: string;
-  buildCommand?: (builder: SlashCommandBuilder) => SlashCommandBuilder;
+  buildCommand?: (builder: SlashCommandBuilder) => Pick<SlashCommandBuilder, 'toJSON'>;
   requirements?: Requirement[];
   execute: (client: Client, interaction: ChatInputCommandInteraction) => Promise<void>;
 }
