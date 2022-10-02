@@ -32,6 +32,7 @@ export class UsersService extends RepositoryService<User> {
                 skills: {
                   skill: true,
                 },
+                wallet: true,
               },
             },
           }
