@@ -2,9 +2,13 @@ import { EmbedField } from 'discord.js';
 
 import type { ICommand } from '../interfaces';
 import { isRegistered } from '../requirements/isRegistered';
-import { AppDataSource } from '../data-source';
-import { User } from '../entities/user';
 import { UsersService } from '../services/users-service';
+import { PlayerSkill } from '../entities/player-skill';
+
+const formatSkill = (skill: PlayerSkill) =>
+  `level **${skill.level}**\nxp: ${skill.experience}/${
+    skill.skill.baseExperience * skill.skill.growthRate * skill.level
+  }\n`;
 
 export const Command: ICommand = {
   name: 'skills',
@@ -12,7 +16,6 @@ export const Command: ICommand = {
   requirements: [isRegistered],
   async execute(client, interaction) {
     const usersService = new UsersService();
-    const usersRepository = AppDataSource.getRepository(User);
     const user = await usersService.findById(interaction.user.id);
 
     console.log(user);
