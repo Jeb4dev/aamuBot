@@ -6,6 +6,7 @@ import {
   OneToOne,
   Column,
   JoinColumn,
+  Relation,
 } from 'typeorm';
 import { Profile } from './profile';
 
@@ -22,7 +23,7 @@ export class Wallet {
 
   @OneToOne(() => Profile)
   @JoinColumn()
-  profile: Profile;
+  profile: Relation<Profile>;
 
   @Column({ default: 0 })
   gold: number;

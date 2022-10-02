@@ -1,4 +1,5 @@
-import { Entity, PrimaryColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, PrimaryColumn, CreateDateColumn, UpdateDateColumn, OneToOne, Relation, JoinColumn } from 'typeorm';
+import { SelectedProfile } from './selected-profile';
 
 @Entity({ name: 'users' })
 export class User {
@@ -14,4 +15,7 @@ export class User {
     name: 'updated_on',
   })
   updatedOn: Date;
+
+  @OneToOne(() => SelectedProfile, (selected) => selected.user)
+  selectedProfile: Relation<SelectedProfile>;
 }

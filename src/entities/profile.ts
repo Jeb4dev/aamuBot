@@ -6,6 +6,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
   Column,
+  Relation,
 } from 'typeorm';
 import { PlayerSkill } from './player-skill';
 import { User } from './user';
@@ -16,7 +17,7 @@ export class Profile {
   id: number;
 
   @ManyToOne(() => User)
-  user: User;
+  user: Relation<User>;
 
   @CreateDateColumn({
     name: 'created_on',
@@ -29,7 +30,7 @@ export class Profile {
   updatedOn: Date;
 
   @OneToMany(() => PlayerSkill, (skill) => skill.profile)
-  skills: PlayerSkill[];
+  skills: Relation<PlayerSkill[]>;
 
   @Column()
   label: string;

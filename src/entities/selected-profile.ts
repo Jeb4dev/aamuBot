@@ -1,4 +1,12 @@
-import { Entity, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  CreateDateColumn,
+  UpdateDateColumn,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+  Relation,
+} from 'typeorm';
 import { Profile } from './profile';
 import { User } from './user';
 
@@ -7,13 +15,13 @@ export class SelectedProfile {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => User)
+  @OneToOne(() => User, (user) => user.selectedProfile)
   @JoinColumn()
   user: User;
 
   @OneToOne(() => Profile)
   @JoinColumn()
-  profile: Profile;
+  profile: Relation<Profile>;
 
   @CreateDateColumn({
     name: 'created_on',
