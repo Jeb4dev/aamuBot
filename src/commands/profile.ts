@@ -65,6 +65,7 @@ export const Command: ICommand = {
       },
     };
 
-    await interaction.reply({ embeds: [profileEmbed] });
+    const message = await interaction.reply({ embeds: [profileEmbed], fetchReply: true });
+    await message.react('😄');
   },
 };
