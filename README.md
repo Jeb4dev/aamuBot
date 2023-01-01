@@ -1,4 +1,4 @@
-# project-x
+# aamuBot
 
 ## Development
 ### Setup
@@ -12,9 +12,9 @@
 - ``npm run build-ts && npm start``
 ### Docker
 #### Build Docker Image
-- ``docker image build -t project-x-bot .``
+- ``docker image build -t aamuBot .``
 #### Run Docker Container
-- ``docker run -d -e TOKEN= -e CLIENT_ID= -e DB_ADDRESS= --name project-x-bot project-x-bot ``
+- ``docker run -d -e TOKEN= -e CLIENT_ID= -e DB_ADDRESS= --name aamuBot aamuBot``
 ### Migrations
 - migrate to the last migration `npm run migrate:up`
 - revert the last migration `npm run migrate:down`

@@ -3,6 +3,7 @@ import 'reflect-metadata';
 import { AppDataSource } from './data-source';
 import Bot from './client';
 
+
 const bot = new Bot({ intents: [GatewayIntentBits.Guilds] });
 
 (async () => {

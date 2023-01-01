@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import type { ICommand, IEvent } from '../interfaces';
+import type {ICommand, IEvent} from '../interfaces';
+
 
 const loadModules = async <T, K>(
   directoryName: string,
@@ -18,6 +19,7 @@ const loadModules = async <T, K>(
 };
 
 export const loadCommands = () =>
-  loadModules('commands', ({ Command }: { Command: ICommand }) => [Command.name, Command]);
+  loadModules('commands', ({Command}: { Command: ICommand }) => [Command.name, Command]);
 
-export const loadEvents = () => loadModules('events', ({ Event }: { Event: IEvent }) => [Event.event, Event]);
+export const loadEvents = () => loadModules('events', ({Event}: { Event: IEvent }) => [Event.event, Event]);
+
