@@ -4,8 +4,11 @@ import {DaysLeftToString, MorningsLeft} from "./utils/time";
 
 const morningServices = new MorningService()
 let notifications = morningServices.getNotifications();
+let the_client: any = null
 
 export async function run(client: any) {
+
+  the_client = client
 
   // Infinite recursion, runs once per minute
   async function loop() {
@@ -18,8 +21,8 @@ export async function run(client: any) {
       client.channels.cache.get('1059232905886437496').send('Finished sending notifications! \nTotal send: ' + total)
     }
 
-    // XX:55
-    if (now.getMinutes() === 55) {
+    // every 5 minutes
+    if ( [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55].includes(now.getMinutes()) ) {
       // refresh notifications
       notifications = morningServices.getNotifications();
     }
@@ -36,6 +39,14 @@ export async function run(client: any) {
   // Start up notification
   client.channels.cache.get('1059232905886437496').send('Started!')
   await loop()
+}
+
+export async function runNow() {
+  console.log("Sending")
+  notifications = morningServices.getNotifications();
+  the_client.channels.cache.get('1059232905886437496').send('Started sending triggered notifications!')
+  const total = await handle(the_client, false)
+  the_client.channels.cache.get('1059232905886437496').send('Finished sending triggered notifications! \nTotal send: ' + total)
 }
 
 // Sends Notification messages
