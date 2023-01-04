@@ -2,7 +2,7 @@
 
 export const CreateDate = (date: string): Date => {
   let time = new Date(date);
-  time.setHours(8) // 6 AM EET
+  time.setHours(7) // 6 AM EET
   time.getTimezoneOffset()
   return time
 }
