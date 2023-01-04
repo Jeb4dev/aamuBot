@@ -18,6 +18,6 @@ export const DaysLeftToString = (date: Date): String => {
   const MonthDiff = date.getMonth() - now.getMonth()
   const YearDiff = date.getFullYear() - now.getFullYear()
   let daysLeft = Math.ceil((date.getTime() - now.getTime()) / 86400000)
-  return `${daysLeft} days left. That is ${YearDiff==0 ? "" : YearDiff + " years"} ${MonthDiff==0 ? "" : MonthDiff + " months"} ${DayDiff==0 ? daysLeft : DayDiff + " days"}`
+  return `${daysLeft-1} days left. That is ${YearDiff==0 ? "" : YearDiff + " years"} ${MonthDiff==0 ? "" : MonthDiff + " months"} ${DayDiff==0 ? daysLeft : DayDiff + " days"}`
 }
 
