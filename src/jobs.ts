@@ -15,7 +15,7 @@ export async function run(client: any) {
     let now = new Date();
 
     // 06:00
-    if (now.getHours() === 6 && now.getMinutes() === 0) {
+    if (now.getHours() === 4 && now.getMinutes() === 0) {
       client.channels.cache.get('1059232905886437496').send('Started sending notifications!')
       const total = await handle(client, false)
       client.channels.cache.get('1059232905886437496').send('Finished sending notifications! \nTotal send: ' + total)
@@ -71,13 +71,10 @@ async function handle(client: any, debug: boolean) {
 
 // Forms Notification message string
 async function formMsg(notification: Notification): Promise<String> {
-  let str =
-    `
+  return `
 ${notification.customText == null ? "Aamujaaaa " : notification.customText} <@${notification.to}>
 Viellä ${MorningsLeft(notification.date)} aamua jäljellä.
 
 ${DaysLeftToString(notification.date)}
 `
-
-  return str
 }
