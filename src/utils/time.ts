@@ -9,7 +9,7 @@ export const CreateDate = (date: string): Date => {
 
 export const MorningsLeft = (date: Date): Number => {
   let now = new Date();
-  return Math.ceil((date.getTime() - now.getTime()) / 86400000 - 1) // ms in 24 h
+  return Math.ceil((date.getTime() - now.getTime()) / 86400000) // ms in 24 h
 }
 
 export const DaysLeftToString = (date: Date): String => {
@@ -17,7 +17,7 @@ export const DaysLeftToString = (date: Date): String => {
   const DayDiff = date.getDate() - now.getDate()
   const MonthDiff = date.getMonth() - now.getMonth()
   const YearDiff = date.getFullYear() - now.getFullYear()
-  let daysLeft = Math.ceil((date.getTime() - now.getTime()) / 86400000 - 1)
+  let daysLeft = Math.ceil((date.getTime() - now.getTime()) / 86400000)
   return `${daysLeft} days left. That is ${YearDiff==0 ? "" : YearDiff + " years"} ${MonthDiff==0 ? "" : MonthDiff + " months"} ${DayDiff==0 ? daysLeft : DayDiff + " days"}`
 }
 
