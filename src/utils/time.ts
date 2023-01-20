@@ -14,10 +14,11 @@ export const MorningsLeft = (date: Date): Number => {
 
 export const DaysLeftToString = (date: Date): String => {
   let now = new Date();
-  const DayDiff = date.getDate() - now.getDate()
-  const MonthDiff = date.getMonth() - now.getMonth()
+  const diff = date.getTime() - now.getTime();
+  const DayDiff = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const MonthDiff = Math.floor(DayDiff / 30);
   const YearDiff = date.getFullYear() - now.getFullYear()
-  let daysLeft = Math.ceil((date.getTime() - now.getTime()) / 86400000)
-  return `${daysLeft} days left. That is ${YearDiff==0 ? "" : YearDiff + " years"} ${MonthDiff==0 ? "" : MonthDiff + " months"} ${DayDiff==0 ? daysLeft : DayDiff + " days"}`
+  let daysLeft = Math.ceil((DayDiff % 30));
+  return `${daysLeft} days left. That is ${YearDiff==0 ? "" : YearDiff + " years"} ${MonthDiff==0 ? "" : MonthDiff + " months"} ${DayDiff==0 ? daysLeft : DayDiff % 30 + " days"}`
 }
 
