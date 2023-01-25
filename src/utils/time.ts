@@ -19,6 +19,6 @@ export const DaysLeftToString = (date: Date): String => {
   const MonthDiff = Math.floor(DayDiff / 30);
   const YearDiff = date.getFullYear() - now.getFullYear()
   let daysLeft = Math.ceil((DayDiff % 30));
-  return `${daysLeft} days left. That is ${YearDiff==0 ? "" : YearDiff + " years"} ${MonthDiff==0 ? "" : MonthDiff + " months"} ${DayDiff==0 ? daysLeft : DayDiff % 30 + " days"}`
+  return `That is ${YearDiff==0 ? "" : YearDiff + " years"} ${MonthDiff==0 ? "" : MonthDiff + " months"} ${DayDiff==0 ? daysLeft : DayDiff % 30 + " days"}`
 }
 
